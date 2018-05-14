@@ -1,17 +1,19 @@
 package pl.sii.eu.model;
 
+import java.util.Objects;
+
 public class Amount {
     public static final int PRECISION = 2;
 
-    private final long value;
+    private final double value;
     private final Currency currency;
 
-    public Amount(long value, Currency currency) {
+    public Amount(double value, Currency currency) {
         this.value = value;
         this.currency = currency;
     }
 
-    public long getValue() {
+    public double getValue() {
         return value;
     }
 
@@ -27,9 +29,7 @@ public class Amount {
 
     @Override
     public int hashCode() {
-        int result = (int) (value ^ (value >>> 32));
-        result = 31 * result + (currency != null ? currency.hashCode() : 0);
-        return result;
+        return Objects.hash(value, currency);
     }
 }
 
